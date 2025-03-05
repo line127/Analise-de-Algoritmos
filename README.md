@@ -1,1 +1,1 @@
-Dupla: Henrique André Oneda e Aline Sabel
+Trio: Henrique André Oneda, Aline Sabel e Yuri Gralha
