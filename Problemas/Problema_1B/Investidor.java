@@ -1,6 +1,7 @@
-public class Investidor {
+public class Investidor implements Observer {
 
     private String nomeInvestidor;
+    public Acao acao;
 
 
     public Investidor(String nomeInvestidor) {
@@ -26,13 +27,18 @@ public class Investidor {
     }
 
     public void registrarseEmUmaAcao(Acao acao){
-        acao.inserirInvestidor(this);
+        acao.registerObserver(this);
+        this.acao = acao;
         System.out.println(this.nomeInvestidor + " registrado com sucesso na acao = " + acao.getNomeAcao());
     }
 
-    
     @Override
     public String toString() {
         return nomeInvestidor;
+    }
+
+    @Override
+    public void update() {
+            System.out.println(this.nomeInvestidor + " valor atualizado da acao: " + acao.getValor());
     }
 }

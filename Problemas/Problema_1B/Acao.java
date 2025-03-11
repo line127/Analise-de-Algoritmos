@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Acao {
+public class Acao implements Subject{
 
     private String nomeAcao;
     private double valor;
     private ArrayList<Ordem> listaOrdens = new ArrayList<>();
     private ArrayList<Investidor> listaInvestidoresRegistrados = new ArrayList<>();
     private ArrayList<Ordem> ordemPreProgramada = new ArrayList<>();
+    private ArrayList<Observer> observadores = new ArrayList<>();
 
     public Acao(String nomeAcao, double valor) {
         this.nomeAcao = nomeAcao;
@@ -69,7 +70,7 @@ public class Acao {
     public void atualizarValor(double novoValor) {
         novoValor += 5;
         valor = novoValor;
-        notificar();
+        notifyObservers();
     }
 
     public double getValor() {
@@ -107,6 +108,27 @@ public class Acao {
 
     public void setListaInvestidoresNotificados(ArrayList<Investidor> listaInvestidoresNotificados) {
         this.listaInvestidoresRegistrados = listaInvestidoresNotificados;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observadores.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observadores.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observadores) {
+            o.update();
+        };
+    }
+
+    public ArrayList<Observer> getObservadores() {
+        return observadores;
     }
 
 }

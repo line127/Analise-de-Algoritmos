@@ -18,7 +18,7 @@ public class Teste {
         Acao acao_banco = new Acao("Banco do Brasil", 24);
         Investidor inves_um = new Investidor("Aline");
         inves_um.registrarseEmUmaAcao(acao_banco);
-        assertTrue(acao_banco.getListaInvestidoresNotificados().contains(inves_um));
+        assertTrue(acao_banco.getObservadores().contains(inves_um));
     
     }
 
@@ -41,7 +41,6 @@ public class Teste {
         Investidor inves_dois = new Investidor("Pedro");
         Investidor inves_tres = new Investidor("Samira");
         inves_um.registrarseEmUmaAcao(acao_banco);
-        assertTrue(acao_banco.getListaInvestidoresNotificados().contains(inves_um));
         inves_um.registrarOrdem(acao_banco, "COMPRA", 24);
         inves_dois.registrarOrdem(acao_banco, "VENDA", 24);
         inves_tres.registrarOrdem(acao_banco, "VENDA", 10);
